@@ -1,12 +1,12 @@
-import React from 'react'
-import { HomePage } from '/pages/HomePage';
-import Layout from '../../components/Layout';
+import React from "react";
+import { HomePage } from "/pages/HomePage";
+import Layout from "../../components/Layout";
 
 export default function HomePage() {
   return (
     <Layout>
-       {/* slide */}
-       <div className="w-full banner-wrapper mb-[20px]" data-aos="fade-up">
+      {/* slide */}
+      <div className="w-full banner-wrapper mb-[20px]" data-aos="fade-up">
         <div className="max-w-6xl mx-auto">
           <div className="main-wrapper w-full">
             <div className="banner-card mb-[20px]">
@@ -238,6 +238,248 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* Product FlashSale */}
+      <div className="section-style-one new-products mb-[40px]">
+        <div className="section-wrapper w-full">
+          <div className="relative top-[-92px]"></div>
+          <div className="relative max-w-6xl mx-auto rounded-md min-h-[416px]">
+            <div
+              style={{
+                borderRadius: 16,
+                overflow: "hidden",
+                background: "0% 0% / cover rgb(0, 0, 0)",
+                marginBottom: 10,
+              }}
+            >
+              <div
+                className="block-hot-sale"
+                style={{ backgroundSize: "cover" }}
+              >
+                <div className="box-title">
+                  <div className="box-tab-menu">
+                    
+                    <p
+                      data-key="flashsale_bf25111"
+                      className={`box-tab-item button__select-tab ${
+                        selectedDate === "flashsale_bf25111" ? "active" : ""
+                      }`}
+                      style={{ color: "rgb(215, 0, 24)" }}
+                      onClick={() => handleTabClick("flashsale_bf25111")}
+                    >
+                      25.11
+                    </p>
+                    <p
+                      data-key="flashsale_bf26112"
+                      className={`box-tab-item button__select-tab ${
+                        selectedDate === "flashsale_bf26112" ? "active" : ""
+                      }`}
+                      style={{ color: "rgb(215, 0, 24)" }}
+                      onClick={() => handleTabClick("flashsale_bf26112")}
+                    >
+                      26.11
+                    </p>
+                    <p
+                      data-key="flashsale_bf27113"
+                      className={`box-tab-item button__select-tab ${
+                        selectedDate === "flashsale_bf27113" ? "active" : ""
+                      }`}
+                      style={{ color: "rgb(215, 0, 24)" }}
+                      onClick={() => handleTabClick("flashsale_bf27113")}
+                    >
+                      27.11
+                    </p>
+                  </div>{" "}
+                  <div className="title-image">
+                    <div style={{ textAlign: "center" }}>
+                      <img
+                        src="https://cdn2.cellphones.com.vn/x/media/wysiwyg/title-flash-salebf2023.png"
+                        alt="title"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>{" "}
+                  <div className="box-countdown">
+                    <p className="title" style={{ color: "rgb(215, 0, 24)" }}>
+                      Bắt đầu sau: 
+                    </p>{" "}
+                    <CountdownTimer targetDate={targetDate} />
+                  </div>
+                </div>{" "}
+                <div className="below-title">
+                  <div className="box-tab-menu">
+                    <p
+                      data-key="NaN"
+                      className="box-tab-item button__select-tab active"
+                      style={{ color: "rgb(215, 0, 24)" }}
+                    >
+                      09:00 - 11:00
+                    </p>
+                    <p
+                      data-key="NaN"
+                      className="box-tab-item button__select-tab"
+                    >
+                      14:00 - 16:00
+                    </p>
+                  </div>{" "}
+                  <p className="text-note desktop">
+                    Chỉ áp dụng thanh toán online 100% - Mỗi khách hàng không
+                    mua quá 01 sản phẩm cùng loại
+                  </p>
+                </div>{" "}
+                <div className="box-content">
+                  <div className="relative p-[12px] w-full">
+                    <Slider
+                      className="swiper"
+                      spaceBetween={10}
+                      navigation={true}
+                      pagination={false}
+                      slidesPerView={5}
+                      autoplay={2000}
+                      breakpoints={{
+                        1024: {
+                          slidesPerView: 5,
+                        },
+                        768: {
+                          slidesPerView: 3,
+                        },
+                        640: {
+                          slidesPerView: 2,
+                        },
+                        320: {
+                          slidesPerView: 2,
+                        },
+                      }}
+                    >
+                      {data?.map((item, index) => (
+                        <SwiperSlide key={index}>
+                          <div
+                            data-aos="fade-up"
+                            className="bg-white w-full w[140px]"
+                          >
+                            <div className="relative w-full h-full p-4 flex flex-col bg-white justify-between">
+                              <div className="relative flex-1 flex-grow-0 flex-shrink-0 flex-basis-auto">
+                                <div className="relative">
+                                  <div className="relative pb-[100%]">
+                                    <div
+                                      height="100%"
+                                      width="100%"
+                                      className="inline-block overflow-hidden h-full w-full transition-transform duration-300 ease-in-out absolute inset-0 object-contain"
+                                    >
+                                      <Link to={`/product/${item.slugProduct}`}>
+                                        <img
+                                          src={item.images[0].imagePath}
+                                          loading="lazy"
+                                          hover="zoom"
+                                          decoding="async"
+                                          alt="Laptop ACER Nitro 16 Phoenix AN16-41-R5M4 (Ryzen 5 7535HS/RAM 8GB/RTX 4050/512GB SSD/ Windows 11)"
+                                          style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "contain",
+                                            position: "absolute",
+                                            top: 0,
+                                            left: 0,
+                                          }}
+                                        />
+                                      </Link>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="mb-1">
+                                  <div
+                                    type="body"
+                                    color="textSecondary"
+                                    className="product-brand-name border-gray-300 opacity-100 text-gray-500 font-medium text-sm leading-[20px] overflow-hidden whitespace-nowrap overflow-ellipsis transition duration-300 ease-in-out delay-0s"
+                                    style={{
+                                      textTransform: "uppercase",
+                                      display: "inline",
+                                    }}
+                                  >
+                                    {item.brand.nameBrand}
+                                  </div>
+                                </div>
+                                <div className="h-12">
+                                  <div
+                                    type="caption"
+                                    className="att-product-card-title  border-gray-300 opacity-100 text-gray-600 font-normal text-sm leading-4 overflow-hidden custom-line-clamp"
+                                    color="textPrimary"
+                                  >
+                                    <Link to={`/product/${item.slugProduct}`}>
+                                      <h3
+                                        title={item.nameProduct}
+                                        className="text-sm font-normal leading-4 inline"
+                                      >
+                                        {item.nameProduct}
+                                      </h3>
+                                    </Link>
+                                  </div>
+                                </div>
+                                <div className="relative mt-1 mb-1 pr-0 flex items-center">
+                                  <div className="flex flex-col items-start h-10">
+                                    <div
+                                      type="subtitle"
+                                      className="att-product-detail-latest-price opacity-100 text-blue-700 font-bold text-lg leading-6 overflow-hidden whitespace-normal overflow-ellipsis mt-1"
+                                      color="primary500"
+                                    >
+                                      {formatPrice(item.price_has_dropped)}đ
+                                    </div>
+                                    <div class="flex h-4">
+                                      <div
+                                        type="caption"
+                                        class="att-product-detail-retail-price m-0.25 opacity-100 text-gray-500 font-normal text-xs leading-4 overflow-hidden overflow-ellipsis line-through mt-1"
+                                        color="textSecondary"
+                                      >
+                                        {formatPrice(item.initial_price)} đ
+                                      </div>
+                                      <div
+                                        type="caption"
+                                        color="primary500"
+                                        class="opacity-100 text-blue-500 font-normal text-xs leading-4 overflow-hidden overflow-ellipsis ml-2 mt-1"
+                                      >
+                                        -{" "}
+                                        {calculateDiscountPercentage(
+                                          item?.initial_price,
+                                          item?.price_has_dropped
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="ml-10">
+                                    <button
+                                      className="w-8 h-8 border-[1px] border-blue-400 rounded-full p-[11px] flex-shrink-0 order-first"
+                                      onClick={() => handleAddToCart()}
+                                    >
+                                      <img
+                                        src="https://i.imgur.com/ZCeBSHN.png"
+                                        alt=""
+                                        style={{ transform: "scale(2.5)" }}
+                                      />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                      <div className="navigation slider-prev" />
+                      <div className="navigation slider-next" />
+                    </Slider>
+                  </div>
+                  <div style={{ display: "none" }}>
+                    <p className="loading-text">Đang tải ...</p>
+                  </div>
+                </div>{" "}
+                <p className="text-note mobile">
+                  Chỉ áp dụng thanh toán online 100% - Mỗi khách hàng không mua
+                  quá 01 sản phẩm cùng loại
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </Layout>
-  )
+  );
 }
