@@ -6,7 +6,35 @@ import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
 
 export default function BlogPage() {
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const itemsPerPage = 4;
+
+  const { data, isLoading } = useQuery(
+    ["blog", currentPage],
+    () => blogService.fetchAllBlogs(currentPage),
+    {
+      retry: 3,
+      retryDelay: 1000,
+    }
+  );
+
+  useEffect(() => {
+    if (data) {
+      setTotalPages(Math.ceil(data.length / itemsPerPage));
+    }
+  }, [data, itemsPerPage]);
+
+  const dataExists = data && Array.isArray(data);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedBlogs = dataExists ? data.slice(startIndex, endIndex) : [];
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <Layout>
       <div className="w-full  pt-[0px] pb-[0px]">
@@ -48,7 +76,10 @@ export default function BlogPage() {
                 <div className="w-full lg:w-9/12 pr-5 mb-4 lg:mb-0">
                   <div className="bg-white shadow-sm rounded-md">
                     {/* Hàng 1 */}
-                   
+                    {isLoading ? (
+                      <Loading />
+                    ) : (
+                      displayedBlogs?.map((item) => (
                         <div key={item.id} className="p-4 shadow-sm flex">
                           {/* Ảnh (nằm ngoài cùng bên trái) */}
                           <img
@@ -87,10 +118,52 @@ export default function BlogPage() {
                             </Link>
                           </div>
                         </div>
-                     
+                      ))
+                    )}
                   </div>
                 </div>
-               
+                {/* Cột 2 (30%) */}
+                <div className="w-full lg:w-3/12">
+                  {/* Nội dung cột 2 */}
+                  <div className="bg-white p-4 shadow-md flex flex-col rounded-md">
+                    <p className="bg-blue-700 text-white py-0.5 px-1 mb-2 w-[256px] rounded-md text-center text-[23px]">
+                      Tin tức xem nhiều
+                    </p>
+
+                    <img
+                      src="https://phongvu.vn/cong-nghe/wp-content/uploads/2023/11/danh-gia-laptop-msi-cyborg-300x300.png"
+                      alt="Mô tả ảnh"
+                      className="w-full h-40 object-cover mb-4 rounded-md"
+                    />
+                    {isLoading ? (
+                      <Loading />
+                    ) : (
+                      data?.map((item, index) => (
+                        <div>
+                          <ul
+                            className="list-decimal text-gray-600 flex-1"
+                            key={index}
+                          >
+                            <div className="flex mb-2">
+                              <div className="w-5 h-5 bg-blue-700 text-white mr-2 flex items-center justify-center rounded-md mt-1">
+                                {index + 1}
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center">
+                                  <Link to={`/tin-tuc/${item.slugBlog}`}>
+                                    <div>
+                                      <b>{item.titleBlog}</b>
+                                    </div>
+                                  </Link>
+                                </div>
+                              </div>
+                            </div>
+                          </ul>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
               </div>
               <div class="mt-4 lg:mt-[1rem] opacity-1">
                 <div class="w-full text-center opacity-1 mt-[1rem]">
