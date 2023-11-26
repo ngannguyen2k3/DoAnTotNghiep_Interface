@@ -1,8 +1,45 @@
-import React from "react";
-import { HomePage } from "/pages/HomePage";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
+import { useQuery } from "@tanstack/react-query";
+import { productService } from "../../services/product.service";
+import { Link } from "react-router-dom";
+import { URL_CONSTANTS } from "../../constants/url.constants";
+import {
+  calculateDiscountPercentage,
+  formatPrice,
+} from "../../utils/fomatPrice";
+import brand from "../../json/brand.json";
+import { blogService } from "../../services/blog.service";
+import { bannerService } from "../../services/banner.service";
+import Loading from "./../../components/Loading/index";
+import Slider from "../../components/Carousel";
+import { SwiperSlide } from "swiper/react";
+import { COLOR } from "../../constants/style.constants";
+import "./style.css";
+import CountdownTimer from "../../components/CountdownTimer";
+import { categoryService } from "../../services/category.service";
+import Pagination from "../../components/Pagination";
 
 export default function HomePage() {
+  const { data, isloading } = useQuery(
+    ["product"],
+    () => productService.fetchAllProducts(),
+    {
+      retry: 3,
+      retryDelay: 1000,
+    }
+  );
+
+
+
+  const { data: bannerData } = useQuery(
+    ["banner"],
+    () => bannerService.fetchAllBanners(),
+    {
+      retry: 3,
+      retryDelay: 1000,
+    }
+  );
   return (
     <Layout>
       {/* slide */}
