@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, Navigate, useSearchParams } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
-import BlogPage from "../pages/BlogPage";
+
 import ContactPage from "../pages/ContactPage";
 import BlogDetail from "../pages/BlogDetail";
 import CartPage from "../pages/CartPage";
@@ -20,6 +20,7 @@ import OrderPage from "../pages/OrderPage";
 import OrderDetailPage from "../pages/OrderDetailPage";
 import { google } from "../stores/authentication/actions";
 import SearchPage from "../pages/SearchPage";
+import BlogPage from "../pages/BlogPage";
 
 const privateRoutes = [
   { path: URL_CONSTANTS.PROFILE, component: ProfilePage },
