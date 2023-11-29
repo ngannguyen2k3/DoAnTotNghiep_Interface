@@ -30,8 +30,6 @@ export default function HomePage() {
     }
   );
 
-
-
   const { data: bannerData } = useQuery(
     ["banner"],
     () => bannerService.fetchAllBanners(),
@@ -295,7 +293,6 @@ export default function HomePage() {
               >
                 <div className="box-title">
                   <div className="box-tab-menu">
-                    
                     <p
                       data-key="flashsale_bf25111"
                       className={`box-tab-item button__select-tab ${
